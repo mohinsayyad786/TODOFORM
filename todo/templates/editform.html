@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block 'main' %}
+
+
+        
+
+                <div class="col-md-6 mt-5">
+                        {% for x in data %}
+                    <form method="POST" action="/edit/{{x.id}}">
+                            {% csrf_token %}
+
+                        
+                            <h1 class="bg bg-primary text-white text-center">TODO FORM</h1>
+                            <div class="mb-3">
+                                <label for="id_title" class="form-label">Title</label>
+                                <input type="text" class="form-control" name="title" value="{{x.title}}" id="id_title" placeholder="Enter Title">
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_details" class="form-label">Details</label>
+                                <textarea class="form-control" name="detail" id="id_details" rows="3">{{x.detail}}</textarea>
+                            </div>
+                            
+
+                            <div class="mb-3">
+
+                                <select class="form-select" name="cat" aria-label="Default select example">
+                                    <option selected>{{x.cat}}</option>
+                                    <option value="p">Pesonal</option>
+                                    <option value="o">Office</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="mb-3">
+
+                                <label for="id_date" class="form-label">Date</label>
+                                <input type="date" class="form-control" name="date" id="id_date">
+                                <h6>{{x.date}}</h6>
+                            </div>
+                        {% endfor %}
+                            <input class="btn btn-primary" type="submit" value="Update">
+                    </form>    
+                </div>
+                
+
+                       
+        
+
+{% endblock 'main' %}
+
